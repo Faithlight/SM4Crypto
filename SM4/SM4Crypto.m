@@ -86,6 +86,7 @@
     if (mode == OptionMode_ECB) {
         sm4_crypt_ecb(&ctx, 1, length, cInput, cOutput);
     }else{
+        NSAssert(iv.length >0, @"cbc模式 iv 不能为空");
         unsigned char cIV[16];
         memcpy(cIV, [iv dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
             // CBC
@@ -119,6 +120,7 @@
     if (mode == OptionMode_ECB) {
         sm4_crypt_ecb(&ctx, 0, length, cInput, cOutput);
     }else{
+        NSAssert(iv.length >0, @"cbc模式 iv 不能为空");
         unsigned char cIV[16];
         memcpy(cIV, [iv dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
             // CBC
@@ -180,6 +182,7 @@
                     sm4_crypt_ecb(&ctx, 1, length, cInput, cOutput);
                 }else{
                         // CBC
+                    NSAssert(iv.length >0, @"cbc模式 iv 不能为空");
                     unsigned char cIV[16];
                     memcpy(cIV, [iv dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
                     sm4_crypt_cbc(&ctx, 1, length,cIV, cInput, cOutput);
@@ -237,6 +240,7 @@
                     sm4_crypt_ecb(&ctx, 0, length, cInput, cOutput);
                 }else{
                         // CBC
+                    NSAssert(iv.length >0, @"cbc模式 iv 不能为空");
                     unsigned char cIV[16];
                     memcpy(cIV, [iv dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
                     sm4_crypt_cbc(&ctx, 0, length,cIV, cInput, cOutput);

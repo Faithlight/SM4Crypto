@@ -15,16 +15,16 @@ typedef NS_ENUM (NSInteger,OptionMode) {
     OptionMode_CBC = 1
 };
 @interface NSData (SM4Crypto)
-- (NSData *)SM4CryptoWithOptionOperation:(Operation)operation optionMode:(OptionMode)mode IV:(NSData *)IVData key:(NSData *)keyData;
+- (NSData *)SM4CryptoWithOptionOperation:(Operation)operation key:(NSData *)keyData mode:(OptionMode)mode optionalIV:(NSData *)ivData optionalPadding:(BOOL)padding;
 
 @end
 
 @interface NSString (SM4Crypto)
 // !important        如果mode = OptionMode_CBC，iv 不能为空                   if mode = OptionMode_CBC, iv can't be nil
-- (NSString *)SM4StringEncryptWithkey:(NSString *__nonnull)key optionMode:(OptionMode)mode optionalIV:(NSString *)iv;
-- (NSString *)SM4StringDecryptWithkey:(NSString *__nonnull)key optionMode:(OptionMode)mode optionalIV:(NSString *)iv;
-- (NSString *)SM4FileEncryptWithkey:(NSString *__nonnull)key optionMode:(OptionMode)mode optionalIV:(NSString *)iv;
-- (NSString *)SM4FileDecryptWithkey:(NSString *__nonnull)key optionMode:(OptionMode)mode optionalIV:(NSString *)iv;
+- (NSString *)SM4StringEncryptWithKey:(NSString *__nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv optionalPadding:(BOOL)padding;
+- (NSString *)SM4StringDecryptWithKey:(NSString *__nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv optionalPadding:(BOOL)padding;
+- (NSString *)SM4FileEncryptWithKey:(NSString * __nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv;
+- (NSString *)SM4FileDecryptWithKey:(NSString *__nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv;
 @end
 
 

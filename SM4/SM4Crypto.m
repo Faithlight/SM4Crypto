@@ -10,23 +10,22 @@
 #import "SM4+Helper.h"
 
 @implementation NSData (SM4Crypto)
-- (NSData *)SM4CryptoWithOptionOperation:(Operation)operation optionMode:(OptionMode)mode IV:(NSData *)IVData key:(NSData *)keyData
+- (NSData *)SM4CryptoWithOptionOperation:(Operation)operation key:(NSData *)keyData mode:(OptionMode)mode optionalIV:(NSData *)ivData optionalPadding:(BOOL)padding
 {
     
     unsigned char key[16] = {0x00};
     memcpy(key, keyData.bytes, 16);
     int length = (int)self.length;
     int paddingLength = 0;
-    
     if (operation == Operaton_Encrypt) {
-        paddingLength =16 - length % 16;
-        length = length +paddingLength;   //padding填充后的长度，为16的倍数
+        paddingLength = length % 16 ==0 ?  0 : 16 - length % 16 ;
+        length = length +paddingLength;  //补齐16倍数
     }
     unsigned char *cInput = (unsigned char*)malloc(length);
     unsigned char* cOutput =(unsigned char*)malloc(length);
     memset(cInput, 0, length);
     memcpy(cInput, self.bytes, self.length);  //原data拷贝
-    if (operation == Operaton_Encrypt) {
+    if (operation == Operaton_Encrypt && padding) {
         for(int i = 0; i < paddingLength; i ++) {
             cInput[self.length +i] = paddingLength;     //将所有填充位填充相同的数paddingLength
         }
@@ -34,7 +33,6 @@
         
     sm4_context ctx;
     NSData *cryptData = nil;
-
     if (operation == Operaton_Encrypt) {
         sm4_setkey_enc(&ctx,key);
     }else{
@@ -44,14 +42,14 @@
         sm4_crypt_ecb(&ctx, 1-operation, length, cInput, cOutput);
     }else{
         unsigned char iv[16];
-        memcpy(iv, IVData.bytes, 16);
+        memcpy(iv, ivData.bytes, 16);
             // CBC
         sm4_crypt_cbc(&ctx, 1-operation, length,iv, cInput, cOutput);
     }
     if (operation == Operaton_Encrypt) {
         cryptData = [NSData dataWithBytes:cOutput length:length];  //只取原数据长度
     } else {
-        paddingLength = cOutput[length -1];
+        if (padding)  paddingLength = cOutput[length -1];
         cryptData = [NSData dataWithBytes:cOutput length:length - paddingLength];
     }
     free(cInput);
@@ -63,24 +61,25 @@
 @end
 
 @implementation NSString (SM4Crypto)
-- (NSString *)SM4StringEncryptWithkey:(NSString *__nonnull)key optionMode:(OptionMode)mode optionalIV:(NSString *)iv
+- (NSString *)SM4StringEncryptWithKey:(NSString *__nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv optionalPadding:(BOOL)padding
 {
     NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
     unsigned char cKey[16] = {0x00};
     memcpy(cKey, [key dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
     int length = (int)data.length;
     int paddingLength = 0;
-    paddingLength =16 - length % 16;
-    length = length +paddingLength;   //padding填充后的长度，为16的倍数
-    
+    paddingLength = length % 16 ==0 ?  0 : 16 - length % 16 ;
+    length = length +paddingLength;  //补齐16倍数
     unsigned char *cInput = (unsigned char*)malloc(length);
     unsigned char* cOutput =(unsigned char*)malloc(length);
     memset(cInput, 0, length);
     memcpy(cInput, data.bytes, data.length);  //原data拷贝
-    for(int i = 0; i < paddingLength; i ++) {
-        cInput[data.length +i] = paddingLength;     //将所有填充位填充相同的数paddingLength
+    if (padding) {
+        for(int i = 0; i < paddingLength; i ++) {
+                cInput[data.length +i] = paddingLength;     //将所有填充位填充相同的数paddingLength
+        }
     }
-    
+
     sm4_context ctx;
     sm4_setkey_enc(&ctx,cKey);
     if (mode == OptionMode_ECB) {
@@ -101,7 +100,7 @@
 //    return [[NSString alloc] initWithData:[cryptData base64EncodedDataWithOptions:0] encoding:NSUTF8StringEncoding];
     return cryptData.HexString;
 }
-- (NSString *)SM4StringDecryptWithkey:(NSString *__nonnull)key optionMode:(OptionMode)mode optionalIV:(NSString *)iv
+- (NSString *)SM4StringDecryptWithKey:(NSString *__nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv optionalPadding:(BOOL)padding
 {
 //    NSData *data = [[NSData alloc]  initWithBase64EncodedString:self options:0];
     NSData *data = [self hexStringRestoreData];
@@ -126,7 +125,9 @@
             // CBC
         sm4_crypt_cbc(&ctx, 0, length,cIV, cInput, cOutput);
     }
-    paddingLength = cOutput[length -1];
+    if (padding) {
+        paddingLength = cOutput[length -1];
+    }
     NSData *cryptData = [NSData dataWithBytes:cOutput length:length - paddingLength];
     free(cInput);
     free(cOutput);
@@ -137,7 +138,7 @@
 
 
 
-- (NSString *)SM4FileEncryptWithkey:(NSString * __nonnull)key optionMode:(OptionMode)mode optionalIV:(NSString *)iv
+- (NSString *)SM4FileEncryptWithKey:(NSString * __nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv
 {
     NSInputStream *inputStream = [[NSInputStream alloc] initWithFileAtPath:self];
     [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -156,7 +157,7 @@
     sm4_context ctx;   //初始化sm4 ctx
     sm4_setkey_enc(&ctx,cKey);
     while (inputStream.hasBytesAvailable) {
-        @autoreleasepool {
+        @autoreleasepool {   //自动释放池释放buffData等数据
                 //从输出流中读取数据，读到缓冲区中
             NSInteger bytesRead = [inputStream read: readBuffer
                                                maxLength:maxLength];
@@ -166,18 +167,10 @@
                 {
                 NSData *buffData = [NSData dataWithBytes:readBuffer length:bytesRead];
                 int length = (int)buffData.length;
-                int paddingLength = 0;
-                paddingLength =16 - length % 16;
-                length = length +paddingLength;   //padding填充后的长度，为16的倍数
-
                 unsigned char *cInput = (unsigned char*)malloc(length);
                 unsigned char* cOutput =(unsigned char*)malloc(length);
                 memset(cInput, 0, length);
                 memcpy(cInput, buffData.bytes, buffData.length);  //原data拷贝
-                for(int i = 0; i < paddingLength; i ++) {
-                    cInput[buffData.length +i] = paddingLength;     //将所有填充位填充相同的数paddingLength
-                }
-                
                 if (mode == OptionMode_ECB) {
                     sm4_crypt_ecb(&ctx, 1, length, cInput, cOutput);
                 }else{
@@ -192,7 +185,6 @@
                 free(cOutput);
                 cInput = NULL;
                 cOutput = NULL;
-                
                 [outputStream write:cryptData.bytes maxLength:cryptData.length];
                 }
         }
@@ -201,7 +193,7 @@
     [outputStream removeFromRunLoop:NSRunLoop.currentRunLoop forMode:NSDefaultRunLoopMode];
     return outputPath;
 }
-- (NSString *)SM4FileDecryptWithkey:(NSString *__nonnull)key optionMode:(OptionMode)mode optionalIV:(NSString *)iv
+- (NSString *)SM4FileDecryptWithKey:(NSString *__nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv
 {
     NSInputStream *inputStream = [[NSInputStream alloc] initWithFileAtPath:self];
     [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -214,7 +206,7 @@
     unsigned char cKey[16] = {0x00};
     memcpy(cKey, [key dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
         //读取的字节长度
-    NSInteger maxLength = 1024*1024 +16;
+    NSInteger maxLength = 1024*1024;
         //缓冲区
     uint8_t readBuffer [maxLength];
     sm4_context ctx;
@@ -230,8 +222,6 @@
                 {
                 NSData *buffData = [NSData dataWithBytes:readBuffer length:bytesRead];
                 int length = (int)buffData.length;
-                int paddingLength = 0;
-                
                 unsigned char *cInput = (unsigned char*)malloc(length);
                 unsigned char *cOutput =(unsigned char*)malloc(length);
                 memset(cInput, 0, length);
@@ -245,13 +235,12 @@
                     memcpy(cIV, [iv dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
                     sm4_crypt_cbc(&ctx, 0, length,cIV, cInput, cOutput);
                 }
-                paddingLength = cOutput[length -1];
-                NSData *cryptData = [NSData dataWithBytes:cOutput length:length-paddingLength];
+                NSData *cryptData = [NSData dataWithBytes:cOutput length:length];
+
                 free(cInput);
                 free(cOutput);
                 cInput = NULL;
                 cOutput = NULL;
-                
                 [outputStream write:cryptData.bytes maxLength:cryptData.length];
                 }
         }

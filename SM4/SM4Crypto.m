@@ -12,8 +12,9 @@
 @implementation NSData (SM4Crypto)
 - (NSData *)SM4CryptoWithOptionOperation:(Operation)operation key:(NSData *)keyData mode:(OptionMode)mode optionalIV:(NSData *)ivData optionalPadding:(BOOL)padding
 {
-    
-    unsigned char key[16] = {0x00};
+    NSAssert(keyData.length ==16 && ivData.length == 16 && self.length > 0, @"参数出错");
+
+    unsigned char key[16] ;
     memcpy(key, keyData.bytes, 16);
     int length = (int)self.length;
     int paddingLength = 0;
@@ -42,6 +43,7 @@
         sm4_crypt_ecb(&ctx, 1-operation, length, cInput, cOutput);
     }else{
         unsigned char iv[16];
+        memset(iv, 0, 16);
         memcpy(iv, ivData.bytes, 16);
             // CBC
         sm4_crypt_cbc(&ctx, 1-operation, length,iv, cInput, cOutput);
@@ -63,8 +65,10 @@
 @implementation NSString (SM4Crypto)
 - (NSString *)SM4StringEncryptWithKey:(NSString *__nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv optionalPadding:(BOOL)padding
 {
+    NSAssert(key.length ==16 && iv.length == 16 && self.length > 0, @"参数出错");
+
     NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
-    unsigned char cKey[16] = {0x00};
+    unsigned char cKey[16] ;
     memcpy(cKey, [key dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
     int length = (int)data.length;
     int paddingLength = 0;
@@ -79,32 +83,33 @@
                 cInput[data.length +i] = paddingLength;     //将所有填充位填充相同的数paddingLength
         }
     }
-
     sm4_context ctx;
     sm4_setkey_enc(&ctx,cKey);
     if (mode == OptionMode_ECB) {
         sm4_crypt_ecb(&ctx, 1, length, cInput, cOutput);
     }else{
-        NSAssert(iv.length >0, @"cbc模式 iv 不能为空");
         unsigned char cIV[16];
         memcpy(cIV, [iv dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
             // CBC
         sm4_crypt_cbc(&ctx, 1, length,cIV, cInput, cOutput);
     }
+
     NSData *cryptData = [NSData dataWithBytes:cOutput length:length];
     free(cInput);
     free(cOutput);
     cInput = NULL;
     cOutput = NULL;
 //    转base64编码string，对应的解密时候也需要用base64解码成data
-//    return [[NSString alloc] initWithData:[cryptData base64EncodedDataWithOptions:0] encoding:NSUTF8StringEncoding];
-    return cryptData.HexString;
+    return [cryptData base64EncodedStringWithOptions:0];
+//    return cryptData.HexString;
 }
 - (NSString *)SM4StringDecryptWithKey:(NSString *__nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv optionalPadding:(BOOL)padding
 {
-//    NSData *data = [[NSData alloc]  initWithBase64EncodedString:self options:0];
-    NSData *data = [self hexStringRestoreData];
-    unsigned char cKey[16] = {0x00};
+    NSAssert(key.length ==16 && iv.length == 16 && self.length > 0, @"参数出错");
+
+    NSData *data = [[NSData alloc]  initWithBase64EncodedString:self options:0];
+//    NSData *data = [self hexStringRestoreData];
+    unsigned char cKey[16] ;
     memcpy(cKey, [key dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
     int length = (int)data.length;
     int paddingLength = 0;
@@ -119,7 +124,6 @@
     if (mode == OptionMode_ECB) {
         sm4_crypt_ecb(&ctx, 0, length, cInput, cOutput);
     }else{
-        NSAssert(iv.length >0, @"cbc模式 iv 不能为空");
         unsigned char cIV[16];
         memcpy(cIV, [iv dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
             // CBC
@@ -140,6 +144,8 @@
 
 - (NSString *)SM4FileEncryptWithKey:(NSString * __nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv
 {
+    NSAssert(key.length ==16 && iv.length == 16 && self.length > 0, @"参数出错");
+
     NSInputStream *inputStream = [[NSInputStream alloc] initWithFileAtPath:self];
     [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [inputStream open];
@@ -148,7 +154,7 @@
     [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [outputStream open];
     
-    unsigned char cKey[16] = {0x00};
+    unsigned char cKey[16] ;
     memcpy(cKey, [key dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
         //读取的字节长度
     NSInteger maxLength = 1024*1024;
@@ -175,7 +181,6 @@
                     sm4_crypt_ecb(&ctx, 1, length, cInput, cOutput);
                 }else{
                         // CBC
-                    NSAssert(iv.length >0, @"cbc模式 iv 不能为空");
                     unsigned char cIV[16];
                     memcpy(cIV, [iv dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
                     sm4_crypt_cbc(&ctx, 1, length,cIV, cInput, cOutput);
@@ -195,6 +200,8 @@
 }
 - (NSString *)SM4FileDecryptWithKey:(NSString *__nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv
 {
+    NSAssert(key.length ==16 && iv.length == 16 && self.length > 0, @"参数出错");
+
     NSInputStream *inputStream = [[NSInputStream alloc] initWithFileAtPath:self];
     [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [inputStream open];
@@ -203,7 +210,7 @@
     [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [outputStream open];
     
-    unsigned char cKey[16] = {0x00};
+    unsigned char cKey[16] ;
     memcpy(cKey, [key dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
         //读取的字节长度
     NSInteger maxLength = 1024*1024;
@@ -230,7 +237,6 @@
                     sm4_crypt_ecb(&ctx, 0, length, cInput, cOutput);
                 }else{
                         // CBC
-                    NSAssert(iv.length >0, @"cbc模式 iv 不能为空");
                     unsigned char cIV[16];
                     memcpy(cIV, [iv dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
                     sm4_crypt_cbc(&ctx, 0, length,cIV, cInput, cOutput);

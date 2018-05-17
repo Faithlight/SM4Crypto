@@ -20,7 +20,8 @@ typedef NS_ENUM (NSInteger,OptionMode) {
 @end
 
 @interface NSString (SM4Crypto)
-// !!! important                if mode = OptionMode_CBC, iv can't be nil
+// !!! important                if mode is OptionMode_CBC, iv can't be nil
+//optionalPadding    PKCS7 && ZeroPadding
 - (NSString *)SM4StringEncryptWithKey:(NSString *__nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv optionalPadding:(BOOL)padding;
 - (NSString *)SM4StringDecryptWithKey:(NSString *__nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv optionalPadding:(BOOL)padding;
 - (NSString *)SM4FileEncryptWithKey:(NSString * __nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv;

@@ -19,8 +19,8 @@
     int length = (int)self.length;
     int paddingLength = 0;
     if (operation == Operaton_Encrypt) {
-        paddingLength = length % 16 ==0 ?  0 : 16 - length % 16 ;
-        length = length +paddingLength;  //补齐16倍数
+        paddingLength = 16 - length % 16 ;
+        length = length +paddingLength;  //位数补齐16倍数
     }
     unsigned char *cInput = (unsigned char*)malloc(length);
     unsigned char* cOutput =(unsigned char*)malloc(length);
@@ -65,14 +65,14 @@
 @implementation NSString (SM4Crypto)
 - (NSString *)SM4StringEncryptWithKey:(NSString *__nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv optionalPadding:(BOOL)padding
 {
-    NSAssert(key.length ==16 && iv.length == 16 && self.length > 0, @"参数出错");
+//    NSAssert(key.length ==16 && iv.length == 16 && self.length > 0, @"参数出错");
 
     NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
     unsigned char cKey[16] ;
     memcpy(cKey, [key dataUsingEncoding:NSUTF8StringEncoding].bytes, 16);
     int length = (int)data.length;
     int paddingLength = 0;
-    paddingLength = length % 16 ==0 ?  0 : 16 - length % 16 ;
+    paddingLength =  16 - length % 16;
     length = length +paddingLength;  //补齐16倍数
     unsigned char *cInput = (unsigned char*)malloc(length);
     unsigned char* cOutput =(unsigned char*)malloc(length);
@@ -93,7 +93,6 @@
             // CBC
         sm4_crypt_cbc(&ctx, 1, length,cIV, cInput, cOutput);
     }
-
     NSData *cryptData = [NSData dataWithBytes:cOutput length:length];
     free(cInput);
     free(cOutput);
@@ -105,7 +104,7 @@
 }
 - (NSString *)SM4StringDecryptWithKey:(NSString *__nonnull)key mode:(OptionMode)mode optionalIV:(NSString *)iv optionalPadding:(BOOL)padding
 {
-    NSAssert(key.length ==16 && iv.length == 16 && self.length > 0, @"参数出错");
+//    NSAssert(key.length ==16 && iv.length == 16 && self.length > 0, @"参数出错");
 
     NSData *data = [[NSData alloc]  initWithBase64EncodedString:self options:0];
 //    NSData *data = [self hexStringRestoreData];
@@ -129,7 +128,7 @@
             // CBC
         sm4_crypt_cbc(&ctx, 0, length,cIV, cInput, cOutput);
     }
-    if (padding) {
+    if (padding ) {
         paddingLength = cOutput[length -1];
     }
     NSData *cryptData = [NSData dataWithBytes:cOutput length:length - paddingLength];

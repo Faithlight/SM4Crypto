@@ -1,0 +1,617 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		628DA04826E2233000B8BBCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 628DA04726E2233000B8BBCA /* AppDelegate.m */; };
+		628DA04B26E2233000B8BBCA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 628DA04A26E2233000B8BBCA /* SceneDelegate.m */; };
+		628DA04E26E2233000B8BBCA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 628DA04D26E2233000B8BBCA /* ViewController.m */; };
+		628DA05126E2233000B8BBCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 628DA04F26E2233000B8BBCA /* Main.storyboard */; };
+		628DA05326E2233100B8BBCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 628DA05226E2233100B8BBCA /* Assets.xcassets */; };
+		628DA05626E2233100B8BBCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 628DA05426E2233100B8BBCA /* LaunchScreen.storyboard */; };
+		628DA05926E2233100B8BBCA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 628DA05826E2233100B8BBCA /* main.m */; };
+		628DA06326E2233100B8BBCA /* SM4CryptoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 628DA06226E2233100B8BBCA /* SM4CryptoTests.m */; };
+		628DA06E26E2233100B8BBCA /* SM4CryptoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 628DA06D26E2233100B8BBCA /* SM4CryptoUITests.m */; };
+		628DA08526E2236000B8BBCA /* HexTransfor.m in Sources */ = {isa = PBXBuildFile; fileRef = 628DA08026E2236000B8BBCA /* HexTransfor.m */; };
+		628DA08626E2236000B8BBCA /* sm4.c in Sources */ = {isa = PBXBuildFile; fileRef = 628DA08126E2236000B8BBCA /* sm4.c */; };
+		628DA08726E2236000B8BBCA /* SM4Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 628DA08226E2236000B8BBCA /* SM4Crypto.m */; };
+		628DA09C26E348B900B8BBCA /* 孟庭苇 - 风中有朵雨做的云.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 628DA09926E348B900B8BBCA /* 孟庭苇 - 风中有朵雨做的云.mp3 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		628DA05F26E2233100B8BBCA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 628DA03B26E2233000B8BBCA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 628DA04226E2233000B8BBCA;
+			remoteInfo = SM4Crypto;
+		};
+		628DA06A26E2233100B8BBCA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 628DA03B26E2233000B8BBCA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 628DA04226E2233000B8BBCA;
+			remoteInfo = SM4Crypto;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		628DA04326E2233000B8BBCA /* SM4Crypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SM4Crypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		628DA04626E2233000B8BBCA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		628DA04726E2233000B8BBCA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		628DA04926E2233000B8BBCA /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		628DA04A26E2233000B8BBCA /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		628DA04C26E2233000B8BBCA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		628DA04D26E2233000B8BBCA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		628DA05026E2233000B8BBCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		628DA05226E2233100B8BBCA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		628DA05526E2233100B8BBCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		628DA05726E2233100B8BBCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		628DA05826E2233100B8BBCA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		628DA05E26E2233100B8BBCA /* SM4CryptoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SM4CryptoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		628DA06226E2233100B8BBCA /* SM4CryptoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SM4CryptoTests.m; sourceTree = "<group>"; };
+		628DA06426E2233100B8BBCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		628DA06926E2233100B8BBCA /* SM4CryptoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SM4CryptoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		628DA06D26E2233100B8BBCA /* SM4CryptoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SM4CryptoUITests.m; sourceTree = "<group>"; };
+		628DA06F26E2233100B8BBCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		628DA07F26E2236000B8BBCA /* SM4Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SM4Crypto.h; sourceTree = "<group>"; };
+		628DA08026E2236000B8BBCA /* HexTransfor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexTransfor.m; sourceTree = "<group>"; };
+		628DA08126E2236000B8BBCA /* sm4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sm4.c; sourceTree = "<group>"; };
+		628DA08226E2236000B8BBCA /* SM4Crypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SM4Crypto.m; sourceTree = "<group>"; };
+		628DA08326E2236000B8BBCA /* HexTransfor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexTransfor.h; sourceTree = "<group>"; };
+		628DA08426E2236000B8BBCA /* sm4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sm4.h; sourceTree = "<group>"; };
+		628DA09926E348B900B8BBCA /* 孟庭苇 - 风中有朵雨做的云.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "孟庭苇 - 风中有朵雨做的云.mp3"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		628DA04026E2233000B8BBCA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		628DA05B26E2233100B8BBCA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		628DA06626E2233100B8BBCA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		628DA03A26E2233000B8BBCA = {
+			isa = PBXGroup;
+			children = (
+				628DA04526E2233000B8BBCA /* SM4Crypto */,
+				628DA06126E2233100B8BBCA /* SM4CryptoTests */,
+				628DA06C26E2233100B8BBCA /* SM4CryptoUITests */,
+				628DA04426E2233000B8BBCA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		628DA04426E2233000B8BBCA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				628DA04326E2233000B8BBCA /* SM4Crypto.app */,
+				628DA05E26E2233100B8BBCA /* SM4CryptoTests.xctest */,
+				628DA06926E2233100B8BBCA /* SM4CryptoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		628DA04526E2233000B8BBCA /* SM4Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				628DA07E26E2236000B8BBCA /* SM4 */,
+				628DA04626E2233000B8BBCA /* AppDelegate.h */,
+				628DA04726E2233000B8BBCA /* AppDelegate.m */,
+				628DA04926E2233000B8BBCA /* SceneDelegate.h */,
+				628DA04A26E2233000B8BBCA /* SceneDelegate.m */,
+				628DA04C26E2233000B8BBCA /* ViewController.h */,
+				628DA04D26E2233000B8BBCA /* ViewController.m */,
+				628DA09926E348B900B8BBCA /* 孟庭苇 - 风中有朵雨做的云.mp3 */,
+				628DA04F26E2233000B8BBCA /* Main.storyboard */,
+				628DA05226E2233100B8BBCA /* Assets.xcassets */,
+				628DA05426E2233100B8BBCA /* LaunchScreen.storyboard */,
+				628DA05726E2233100B8BBCA /* Info.plist */,
+				628DA05826E2233100B8BBCA /* main.m */,
+			);
+			path = SM4Crypto;
+			sourceTree = "<group>";
+		};
+		628DA06126E2233100B8BBCA /* SM4CryptoTests */ = {
+			isa = PBXGroup;
+			children = (
+				628DA06226E2233100B8BBCA /* SM4CryptoTests.m */,
+				628DA06426E2233100B8BBCA /* Info.plist */,
+			);
+			path = SM4CryptoTests;
+			sourceTree = "<group>";
+		};
+		628DA06C26E2233100B8BBCA /* SM4CryptoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				628DA06D26E2233100B8BBCA /* SM4CryptoUITests.m */,
+				628DA06F26E2233100B8BBCA /* Info.plist */,
+			);
+			path = SM4CryptoUITests;
+			sourceTree = "<group>";
+		};
+		628DA07E26E2236000B8BBCA /* SM4 */ = {
+			isa = PBXGroup;
+			children = (
+				628DA07F26E2236000B8BBCA /* SM4Crypto.h */,
+				628DA08226E2236000B8BBCA /* SM4Crypto.m */,
+				628DA08326E2236000B8BBCA /* HexTransfor.h */,
+				628DA08026E2236000B8BBCA /* HexTransfor.m */,
+				628DA08126E2236000B8BBCA /* sm4.c */,
+				628DA08426E2236000B8BBCA /* sm4.h */,
+			);
+			path = SM4;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		628DA04226E2233000B8BBCA /* SM4Crypto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 628DA07226E2233100B8BBCA /* Build configuration list for PBXNativeTarget "SM4Crypto" */;
+			buildPhases = (
+				628DA03F26E2233000B8BBCA /* Sources */,
+				628DA04026E2233000B8BBCA /* Frameworks */,
+				628DA04126E2233000B8BBCA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SM4Crypto;
+			productName = SM4Crypto;
+			productReference = 628DA04326E2233000B8BBCA /* SM4Crypto.app */;
+			productType = "com.apple.product-type.application";
+		};
+		628DA05D26E2233100B8BBCA /* SM4CryptoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 628DA07526E2233100B8BBCA /* Build configuration list for PBXNativeTarget "SM4CryptoTests" */;
+			buildPhases = (
+				628DA05A26E2233100B8BBCA /* Sources */,
+				628DA05B26E2233100B8BBCA /* Frameworks */,
+				628DA05C26E2233100B8BBCA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				628DA06026E2233100B8BBCA /* PBXTargetDependency */,
+			);
+			name = SM4CryptoTests;
+			productName = SM4CryptoTests;
+			productReference = 628DA05E26E2233100B8BBCA /* SM4CryptoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		628DA06826E2233100B8BBCA /* SM4CryptoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 628DA07826E2233100B8BBCA /* Build configuration list for PBXNativeTarget "SM4CryptoUITests" */;
+			buildPhases = (
+				628DA06526E2233100B8BBCA /* Sources */,
+				628DA06626E2233100B8BBCA /* Frameworks */,
+				628DA06726E2233100B8BBCA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				628DA06B26E2233100B8BBCA /* PBXTargetDependency */,
+			);
+			name = SM4CryptoUITests;
+			productName = SM4CryptoUITests;
+			productReference = 628DA06926E2233100B8BBCA /* SM4CryptoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		628DA03B26E2233000B8BBCA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					628DA04226E2233000B8BBCA = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					628DA05D26E2233100B8BBCA = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 628DA04226E2233000B8BBCA;
+					};
+					628DA06826E2233100B8BBCA = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 628DA04226E2233000B8BBCA;
+					};
+				};
+			};
+			buildConfigurationList = 628DA03E26E2233000B8BBCA /* Build configuration list for PBXProject "SM4Crypto" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 628DA03A26E2233000B8BBCA;
+			productRefGroup = 628DA04426E2233000B8BBCA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				628DA04226E2233000B8BBCA /* SM4Crypto */,
+				628DA05D26E2233100B8BBCA /* SM4CryptoTests */,
+				628DA06826E2233100B8BBCA /* SM4CryptoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		628DA04126E2233000B8BBCA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				628DA09C26E348B900B8BBCA /* 孟庭苇 - 风中有朵雨做的云.mp3 in Resources */,
+				628DA05626E2233100B8BBCA /* LaunchScreen.storyboard in Resources */,
+				628DA05326E2233100B8BBCA /* Assets.xcassets in Resources */,
+				628DA05126E2233000B8BBCA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		628DA05C26E2233100B8BBCA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		628DA06726E2233100B8BBCA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		628DA03F26E2233000B8BBCA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				628DA08626E2236000B8BBCA /* sm4.c in Sources */,
+				628DA08726E2236000B8BBCA /* SM4Crypto.m in Sources */,
+				628DA04E26E2233000B8BBCA /* ViewController.m in Sources */,
+				628DA04826E2233000B8BBCA /* AppDelegate.m in Sources */,
+				628DA08526E2236000B8BBCA /* HexTransfor.m in Sources */,
+				628DA05926E2233100B8BBCA /* main.m in Sources */,
+				628DA04B26E2233000B8BBCA /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		628DA05A26E2233100B8BBCA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				628DA06326E2233100B8BBCA /* SM4CryptoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		628DA06526E2233100B8BBCA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				628DA06E26E2233100B8BBCA /* SM4CryptoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		628DA06026E2233100B8BBCA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 628DA04226E2233000B8BBCA /* SM4Crypto */;
+			targetProxy = 628DA05F26E2233100B8BBCA /* PBXContainerItemProxy */;
+		};
+		628DA06B26E2233100B8BBCA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 628DA04226E2233000B8BBCA /* SM4Crypto */;
+			targetProxy = 628DA06A26E2233100B8BBCA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		628DA04F26E2233000B8BBCA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				628DA05026E2233000B8BBCA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		628DA05426E2233100B8BBCA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				628DA05526E2233100B8BBCA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		628DA07026E2233100B8BBCA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		628DA07126E2233100B8BBCA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		628DA07326E2233100B8BBCA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SM4Crypto/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dl.SM4Crypto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		628DA07426E2233100B8BBCA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SM4Crypto/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dl.SM4Crypto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		628DA07626E2233100B8BBCA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SM4CryptoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dl.SM4CryptoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SM4Crypto.app/SM4Crypto";
+			};
+			name = Debug;
+		};
+		628DA07726E2233100B8BBCA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SM4CryptoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dl.SM4CryptoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SM4Crypto.app/SM4Crypto";
+			};
+			name = Release;
+		};
+		628DA07926E2233100B8BBCA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SM4CryptoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dl.SM4CryptoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SM4Crypto;
+			};
+			name = Debug;
+		};
+		628DA07A26E2233100B8BBCA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SM4CryptoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dl.SM4CryptoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SM4Crypto;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		628DA03E26E2233000B8BBCA /* Build configuration list for PBXProject "SM4Crypto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				628DA07026E2233100B8BBCA /* Debug */,
+				628DA07126E2233100B8BBCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		628DA07226E2233100B8BBCA /* Build configuration list for PBXNativeTarget "SM4Crypto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				628DA07326E2233100B8BBCA /* Debug */,
+				628DA07426E2233100B8BBCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		628DA07526E2233100B8BBCA /* Build configuration list for PBXNativeTarget "SM4CryptoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				628DA07626E2233100B8BBCA /* Debug */,
+				628DA07726E2233100B8BBCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		628DA07826E2233100B8BBCA /* Build configuration list for PBXNativeTarget "SM4CryptoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				628DA07926E2233100B8BBCA /* Debug */,
+				628DA07A26E2233100B8BBCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 628DA03B26E2233000B8BBCA /* Project object */;
+}

@@ -28,18 +28,13 @@ typedef NS_ENUM (NSInteger,PaddingType) { //填充模式
 // if mode is OptionMode_CBC, iv can't be nil, and lenth must 16
 //PaddingOptions: PKCS7 && ZeroPadding
 
-@interface NSData (SM4DataCrypto)
-- (NSData *)SM4EncryptWithKey:(id)key mode:(CryptoMode)mode optionalIV:(id)iv paddingType:(PaddingType)paddingType;
-- (NSData *)SM4DecryptWithKey:(id)key mode:(CryptoMode)mode optionalIV:(id)iv paddingType:(PaddingType)paddingType;
+@interface NSData (DataSM4Crypto)
+- (NSData *)dataSM4EncryptWithKey:(id)key mode:(CryptoMode)mode optionalIV:(id)iv paddingType:(PaddingType)paddingType;
+- (NSData *)dataSM4DecryptWithKey:(id)key mode:(CryptoMode)mode optionalIV:(id)iv paddingType:(PaddingType)paddingType;
 @end
 
-@interface NSString (SM4StringCrypto)
-- (NSString *)SM4EncryptWithKey:(id)key mode:(CryptoMode)mode optionalIV:(id)iv paddingType:(PaddingType)paddingType;
-- (NSString *)SM4DecryptWithKey:(id)key mode:(CryptoMode)mode optionalIV:(id)iv paddingType:(PaddingType)paddingType;
 
-@end
-
-@interface NSString (SM4FileCrypto)
+@interface NSString (FileStreamSM4Crypto)
 - (NSString *)fileStreamSM4EncryptWithKey:(id)key mode:(CryptoMode)mode optionalIV:(id)iv;
 - (NSString *)fileStreamSM4DecryptWithKey:(id)key mode:(CryptoMode)mode optionalIV:(id)iv;
 @end

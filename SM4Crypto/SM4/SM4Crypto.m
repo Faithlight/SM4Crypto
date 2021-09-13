@@ -11,7 +11,7 @@
 #pragma mark DataCrypto
 
 @implementation NSData (SM4DataCrypto)
-- (NSData *)SM4EncryptWithKey:(id)key mode:(CryptoMode)mode optionalIV:(id)iv paddingType:(PaddingType)paddingType
+- (NSData *)dataSM4EncryptWithKey:(id)key mode:(CryptoMode)mode optionalIV:(id)iv paddingType:(PaddingType)paddingType
 {
     NSParameterAssert([key isKindOfClass: [NSData class]] || [key isKindOfClass: [NSString class]]);
     NSParameterAssert(iv == nil || [iv isKindOfClass: [NSData class]] || [iv isKindOfClass: [NSString class]]);
@@ -33,9 +33,9 @@
     NSUInteger length = plainData.length;
     //key iv
     unsigned char *cKey = (unsigned char*)malloc(blockSize);
-    if (keyData)  memcpy(cKey, keyData.bytes, 16);
+    if (keyData)  memcpy(cKey, keyData.bytes, blockSize);
     unsigned char *cIV = (unsigned char*)malloc(blockSize);
-    if (ivData)  memcpy(cIV, ivData.bytes, 16);
+    if (ivData)  memcpy(cIV, ivData.bytes, blockSize);
     //input
     unsigned char *cInput = (unsigned char*)malloc(length);
     memcpy(cInput, plainData.bytes, length);  //原data拷贝
@@ -60,7 +60,7 @@
     cOutput = NULL;
     return cryptData;
 }
-- (NSData *)SM4DecryptWithKey:(id)key mode:(CryptoMode)mode optionalIV:(id)iv paddingType:(PaddingType)paddingType
+- (NSData *)dataSM4DecryptWithKey:(id)key mode:(CryptoMode)mode optionalIV:(id)iv paddingType:(PaddingType)paddingType
 {
     NSParameterAssert([key isKindOfClass: [NSData class]] || [key isKindOfClass: [NSString class]]);
     NSParameterAssert(iv == nil || [iv isKindOfClass: [NSData class]] || [iv isKindOfClass: [NSString class]]);
@@ -251,28 +251,7 @@
 }
 @end
 
-#pragma mark StringCrypto
 
-@implementation NSString (SM4StringCrypto)
-- (NSString *)SM4EncryptWithKey:(id)key mode:(CryptoMode)mode optionalIV:(id)iv paddingType:(PaddingType)paddingType
-{
-    NSData *plainData = [self dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *encryptData = [plainData SM4EncryptWithKey:key mode:mode optionalIV:iv paddingType:paddingType];
-//    转base64编码string，对应的解密时候也需要用base64解码成data
-    return [encryptData base64EncodedStringWithOptions:0];
-//    return cryptData.HexString; //也可以生成16进制字符串
-}
-
-- (NSString *)SM4DecryptWithKey:(NSString *)key mode:(CryptoMode)mode optionalIV:(NSString *)iv paddingType:(PaddingType)paddingType
-{
-    NSData *data = [[NSData alloc] initWithBase64EncodedString:self options:0];
-//    NSData *data = [self hexStringRestoreData];
-    NSData *decryptData = [data SM4DecryptWithKey:key mode:mode optionalIV:iv paddingType:paddingType];
-    return [[NSString alloc] initWithData:decryptData encoding:NSUTF8StringEncoding];
-}
-
-
-@end
 
 
 #pragma mark FileCrypto

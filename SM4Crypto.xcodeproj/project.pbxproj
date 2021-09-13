@@ -14,8 +14,6 @@
 		628DA05326E2233100B8BBCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 628DA05226E2233100B8BBCA /* Assets.xcassets */; };
 		628DA05626E2233100B8BBCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 628DA05426E2233100B8BBCA /* LaunchScreen.storyboard */; };
 		628DA05926E2233100B8BBCA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 628DA05826E2233100B8BBCA /* main.m */; };
-		628DA06326E2233100B8BBCA /* SM4CryptoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 628DA06226E2233100B8BBCA /* SM4CryptoTests.m */; };
-		628DA06E26E2233100B8BBCA /* SM4CryptoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 628DA06D26E2233100B8BBCA /* SM4CryptoUITests.m */; };
 		628DA08526E2236000B8BBCA /* HexTransfor.m in Sources */ = {isa = PBXBuildFile; fileRef = 628DA08026E2236000B8BBCA /* HexTransfor.m */; };
 		628DA08626E2236000B8BBCA /* sm4.c in Sources */ = {isa = PBXBuildFile; fileRef = 628DA08126E2236000B8BBCA /* sm4.c */; };
 		628DA08726E2236000B8BBCA /* SM4Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 628DA08226E2236000B8BBCA /* SM4Crypto.m */; };
@@ -53,11 +51,7 @@
 		628DA05726E2233100B8BBCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		628DA05826E2233100B8BBCA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		628DA05E26E2233100B8BBCA /* SM4CryptoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SM4CryptoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		628DA06226E2233100B8BBCA /* SM4CryptoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SM4CryptoTests.m; sourceTree = "<group>"; };
-		628DA06426E2233100B8BBCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		628DA06926E2233100B8BBCA /* SM4CryptoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SM4CryptoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		628DA06D26E2233100B8BBCA /* SM4CryptoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SM4CryptoUITests.m; sourceTree = "<group>"; };
-		628DA06F26E2233100B8BBCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		628DA07F26E2236000B8BBCA /* SM4Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SM4Crypto.h; sourceTree = "<group>"; };
 		628DA08026E2236000B8BBCA /* HexTransfor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexTransfor.m; sourceTree = "<group>"; };
 		628DA08126E2236000B8BBCA /* sm4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sm4.c; sourceTree = "<group>"; };
@@ -96,8 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				628DA04526E2233000B8BBCA /* SM4Crypto */,
-				628DA06126E2233100B8BBCA /* SM4CryptoTests */,
-				628DA06C26E2233100B8BBCA /* SM4CryptoUITests */,
 				628DA04426E2233000B8BBCA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,24 +122,6 @@
 				628DA05826E2233100B8BBCA /* main.m */,
 			);
 			path = SM4Crypto;
-			sourceTree = "<group>";
-		};
-		628DA06126E2233100B8BBCA /* SM4CryptoTests */ = {
-			isa = PBXGroup;
-			children = (
-				628DA06226E2233100B8BBCA /* SM4CryptoTests.m */,
-				628DA06426E2233100B8BBCA /* Info.plist */,
-			);
-			path = SM4CryptoTests;
-			sourceTree = "<group>";
-		};
-		628DA06C26E2233100B8BBCA /* SM4CryptoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				628DA06D26E2233100B8BBCA /* SM4CryptoUITests.m */,
-				628DA06F26E2233100B8BBCA /* Info.plist */,
-			);
-			path = SM4CryptoUITests;
 			sourceTree = "<group>";
 		};
 		628DA07E26E2236000B8BBCA /* SM4 */ = {
@@ -307,7 +281,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				628DA06326E2233100B8BBCA /* SM4CryptoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +288,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				628DA06E26E2233100B8BBCA /* SM4CryptoUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

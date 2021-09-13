@@ -125,7 +125,7 @@
         case PaddingType_PKCS7:  {
                 //PKCS5:只支持分组长度为8bytes的, PKCS7:支持分组长度1-128bytes,这里当作同一个算法处理了
             memset(cPaddingData, paddingLen, paddingLen);
-            NSMutableData *data = [[NSMutableData alloc]initWithCapacity:self.length + paddingLen];
+            NSMutableData *data = [[NSMutableData alloc] initWithCapacity:self.length + paddingLen];
             [data appendData:self];
             [data appendBytes:cPaddingData length:paddingLen];
             paddedData = data;
@@ -133,7 +133,7 @@
             break;
         case PaddingType_Zero: {
             memset(cPaddingData, 0x00, paddingLen);
-            NSMutableData *data = [[NSMutableData alloc]initWithCapacity:self.length + paddingLen];
+            NSMutableData *data = [[NSMutableData alloc] initWithCapacity:self.length + paddingLen];
             [data appendData:self];
             [data appendBytes:cPaddingData length:paddingLen];
             paddedData = data;
@@ -145,17 +145,16 @@
                     //仅仅添加0x80一个字节即可
                 paddingLen = 1;
                 memset(cPaddingData, 0x80, paddingLen);
-                NSMutableData *data = [[NSMutableData alloc]initWithCapacity:self.length + paddingLen];
+                NSMutableData *data = [[NSMutableData alloc] initWithCapacity:self.length + paddingLen];
                 [data appendData:self];
                 [data appendBytes:cPaddingData length:paddingLen];
                 paddedData = data;
                 
             }else{
                 paddingLen = blockSize - diffBits;
-                
                 memset(cPaddingData, 0x80, 1);
                 memset(cPaddingData+1, 0x00, paddingLen);
-                NSMutableData *data = [[NSMutableData alloc]initWithCapacity:self.length + paddingLen + 1];
+                NSMutableData *data = [[NSMutableData alloc] initWithCapacity:self.length + paddingLen + 1];
                 [data appendData:self];
                 [data appendBytes:cPaddingData length:paddingLen+1];
                 paddedData = data;
@@ -166,7 +165,7 @@
                 //最后一位表示补位的长度，其他位置0x00
             memset(cPaddingData, 0x00, paddingLen);
             cPaddingData[paddingLen-1] = paddingLen;
-            NSMutableData *data = [[NSMutableData alloc]initWithCapacity:self.length + paddingLen];
+            NSMutableData *data = [[NSMutableData alloc] initWithCapacity:self.length + paddingLen];
             [data appendData:self];
             [data appendBytes:cPaddingData length:paddingLen];
             paddedData = data;
@@ -178,7 +177,7 @@
                 cPaddingData[i] = arc4random() % 256;
             }
             cPaddingData[paddingLen-1] = paddingLen;
-            NSMutableData *data = [[NSMutableData alloc]initWithCapacity:self.length + paddingLen];
+            NSMutableData *data = [[NSMutableData alloc] initWithCapacity:self.length + paddingLen];
             [data appendData:self];
             [data appendBytes:cPaddingData length:paddingLen];
             paddedData = data;
